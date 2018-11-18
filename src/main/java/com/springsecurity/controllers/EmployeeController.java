@@ -56,4 +56,34 @@ public class EmployeeController {
 
 		return "login";
 	}
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	public String about(Model model) {
+	
+		return "about";
+	}
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public String contact(Model model) {
+	
+		return "contact";
+	}
+	@RequestMapping(value = "/viewMenu", method = RequestMethod.GET)
+	public String viewMenu(Model model) {
+	
+		return "viewMenu";
+	}
+	@RequestMapping(value = "/admin/employeeManagement", method = RequestMethod.GET)
+	public String employeeManagement(Model model) {
+	
+		return "admin/employeeManagement";
+	}
+	@RequestMapping(value = "/admin/menuManagement", method = RequestMethod.GET)
+	public String menuManagement(Model model) {
+	
+		return "admin/menuManagement";
+	}
+	@RequestMapping(value = "/admin/reportManagement", method = RequestMethod.GET)
+	public String reportManagement(Model model) {
+	
+		return "admin/reportManagement";
+	}
 }
