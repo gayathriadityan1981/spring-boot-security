@@ -21,9 +21,16 @@ public class EmployeeSecurityConfiguration extends WebSecurityConfigurerAdapter 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
         	.antMatchers("/").permitAll()
+        	.antMatchers("/menuManagement").hasAnyRole( "ADMIN")
+        	.antMatchers("/reportManagement").hasAnyRole( "ADMIN")
+        	.antMatchers("/employeeManagement").hasAnyRole( "ADMIN")
+        	.antMatchers("/addMenu").hasAnyRole( "ADMIN")
         	.antMatchers("/welcome").hasAnyRole("USER", "ADMIN")
+        	.antMatchers("/about").hasAnyRole("USER")
+        	.antMatchers("/viewMenu").hasAnyRole("USER", "ADMIN")
+        	.antMatchers("/contact").hasAnyRole("USER")
         	.antMatchers("/getEmployees").hasAnyRole("USER", "ADMIN")
-            .antMatchers("/addNewEmployee").hasAnyRole("ADMIN").anyRequest().authenticated()
+            .antMatchers("/addEmployee").hasAnyRole("ADMIN").anyRequest().authenticated()
             
             .and().formLogin().loginPage("/login").permitAll()
             .permitAll().and().logout().permitAll();
@@ -34,10 +41,10 @@ public class EmployeeSecurityConfiguration extends WebSecurityConfigurerAdapter 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
         authenticationMgr.inMemoryAuthentication()
-        .withUser("employee").password("employee")
+        .withUser("customer").password("customer")
             .authorities("ROLE_USER").and()
-            .withUser("javainuse").password("javainuse")
-           .authorities("ROLE_USER", "ROLE_ADMIN");
+            .withUser("admin").password("admin")
+           .authorities("ROLE_ADMIN");
     }
 
 }
